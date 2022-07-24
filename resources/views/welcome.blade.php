@@ -3,10 +3,10 @@
     <head>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
     </head>
     <body>
         <div id="app">
-            <example-component></example-component>
         </div>
     </body>
 </html>
