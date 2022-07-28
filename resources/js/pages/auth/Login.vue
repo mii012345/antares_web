@@ -44,6 +44,9 @@
                         })
                             .then(response => {
                                 console.log(response)
+                                localStorage.setItem("auth", "ture");
+                                this.loginInfo = response.data.auth;
+                                this.$router.push('/');
                             })
                             .catch(error => {
                                 this.error = error.response.data.errors.email[0]
