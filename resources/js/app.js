@@ -32,9 +32,16 @@ import Vuex from 'vuex'
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    router,
-    el: '#app',
-    store,
-    render: h => h(App)
-});
+const app = async Vue => { 
+    await Promise.all([
+        store.dispatch('user/getUser')
+    ])
+    new Vue({
+        router,
+        el: '#app',
+        store,
+        render: h => h(App)
+    });
+}
+
+app(Vue)

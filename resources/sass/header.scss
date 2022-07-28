@@ -1,0 +1,13 @@
+#header {
+    @media screen and (max-width: 991px) {
+        .header-pc {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        .header-sp {
+            display: none !important;
+        }
+    }
+}

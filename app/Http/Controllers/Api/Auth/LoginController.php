@@ -30,7 +30,6 @@ class LoginController extends Controller
             );
 
 
-            Session::put('logininfo',$user);
             return response()->json(['message' => 'Login successful', 'auth' => Auth::user()], 200);
         }
  
