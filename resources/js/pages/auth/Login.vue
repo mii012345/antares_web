@@ -44,8 +44,8 @@
                         })
                             .then(response => {
                                 console.log(response)
-                                localStorage.setItem("auth", "ture");
-                                this.loginInfo = response.data.auth;
+                                response.data.auth.login_flag = true;
+                                this.$store.commit('setUser', response.data.auth);
                                 this.$router.push('/');
                             })
                             .catch(error => {

@@ -1,17 +1,17 @@
 <template>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light border-bottom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Antares inc.</a>
+            <a class="navbar-brand pointer" @click="routePush('home')">Antares inc.</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link pointer" :class="{'active': $route.name == 'home'}" @click="routePush('home')">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/link">Link</a>
+                        <a class="nav-link pointer" :class="{'active': $route.name == 'link'}" @click="routePush('link')">Link</a>
                     </li>
                     <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,8 +29,11 @@
                     </li> -->
                 </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                    <li v-if="user.login_flag">
+                        <a class="nav-link pointer" :class="{'active': $route.name == '/logout'}" @click="routePush('logout')">Logout</a>
+                    </li>
+                    <li class="nav-item" v-else>
+                        <a class="nav-link pointer" :class="{'active': $route.name == '/login'}" @click="routePush('login')">Login</a>
                     </li>
                 </ul>
                 <!-- <form class="d-flex">
@@ -43,4 +46,26 @@
 </template>
 
 <script>
+export default {
+    data() {
+        return {
+            user: {},
+        }
+    },
+    mounted() {
+        
+    },
+    watch: {
+        $route: function(to, from) {
+            this.user = this.$store.getters.getUser;
+        }
+    },
+    methods: {
+        routePush(name) {
+            if(this.$route.name !== name){
+                this.$router.push({ name: name});
+            }
+        }
+    }
+}
 </script>
