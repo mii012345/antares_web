@@ -1,0 +1,5 @@
+---
+- name: upload
+  shell: |
+    cd ~/{{ dir }}
+    git pull
